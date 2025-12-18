@@ -1,0 +1,19 @@
+{% extends 'diary_app/base.html' %}
+{% block content %}
+<h1>Your Diary Entries</h1>
+<form method="get">
+    <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+<a href="{% url 'entry_create' %}">New Entry</a>
+<ul>
+    {% for entry in entries %}
+    <li>
+        <a href="{% url 'entry_detail' entry.pk %}">{{ entry.title }}</a>
+        ({{ entry.created_at|date:"Y-m-d H:i" }})
+    </li>
+    {% empty %}
+    <li>No entries found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

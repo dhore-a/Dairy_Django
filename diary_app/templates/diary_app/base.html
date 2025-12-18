@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Diary</title>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+    <p>
+        Hi {{ user.username }} |
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </p>
+{% else %}
+    <p>
+        <a href="{% url 'login' %}">Login</a> |
+        <a href="{% url 'register' %}">Register</a>
+    </p>
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

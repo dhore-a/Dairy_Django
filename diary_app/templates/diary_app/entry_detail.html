@@ -1,0 +1,10 @@
+{% extends 'diary_app/base.html' %}
+{% block content %}
+<h2>{{ entry.title }}</h2>
+<p>{{ entry.content }}</p>
+<p>{{ entry.mood}}<p>
+<p>Created at: {{ entry.created_at }}</p>
+<a href="{% url 'entry_update' entry.pk %}">Edit</a> |
+<a href="{% url 'entry_delete' entry.pk %}">Delete</a> |
+<a href="{% url 'entry_list' %}">Back</a>
+{% endblock %}
